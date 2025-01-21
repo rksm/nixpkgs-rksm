@@ -8,13 +8,11 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-        uniclip = pkgs.callPackage ./uniclip.nix { };
+        packages = import ./. { inherit pkgs; };
 
       in
       {
-        packages = {
-          inherit uniclip;
-        };
+        inherit packages;
       }
     );
 }
